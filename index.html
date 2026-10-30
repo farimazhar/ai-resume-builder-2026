@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create a clean, ATS-friendly resume with AI-style writing suggestions." />
+  <title>ResumeCraft — AI Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">R</span> Resume<span>Craft</span></a>
+    <div class="top-actions">
+      <span class="saved-status" id="savedStatus">Your work is saved locally</span>
+      <button class="btn btn-ghost" id="clearBtn">Clear</button>
+      <button class="btn btn-primary" id="downloadBtn">Download PDF ↗</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+        <h1>Build a resume that<br><span>opens doors.</span></h1>
+        <p class="intro-copy">Create a professional, ATS-friendly resume in minutes. Add your details, get writing ideas, and download a polished PDF.</p>
+      </div>
+      <div class="progress-card">
+        <div class="progress-head"><span>Resume completeness</span><strong id="progressText">0%</strong></div>
+        <div class="progress-track"><div id="progressBar"></div></div>
+        <small>Complete more sections to strengthen your profile.</small>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="editor panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">RESUME EDITOR</p><h2>Your information</h2></div>
+          <span class="step-pill">01 / 02</span>
+        </div>
+
+        <div class="section-block">
+          <h3><span>01</span> Personal details</h3>
+          <div class="form-grid">
+            <label>Full name<input id="name" placeholder="e.g. Alex Morgan" /></label>
+            <label>Professional title<input id="role" placeholder="e.g. Frontend Developer" /></label>
+            <label>Email<input id="email" type="email" placeholder="alex@email.com" /></label>
+            <label>Phone<input id="phone" placeholder="+1 555 010 2020" /></label>
+            <label>Location<input id="location" placeholder="City, Country" /></label>
+            <label>LinkedIn / Portfolio<input id="links" placeholder="linkedin.com/in/yourname" /></label>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><h3><span>02</span> Professional summary</h3><button class="text-btn" id="summaryHelp">✦ Write with AI</button></div>
+          <label class="full">A short introduction<textarea id="summary" rows="4" placeholder="Write 2–4 lines about your experience, strengths, and career goals..."></textarea></label>
+          <p class="hint">Tip: Mention your experience, strongest skills, and the value you bring.</p>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><h3><span>03</span> Work experience</h3><button class="text-btn" id="addExperience">＋ Add experience</button></div>
+          <div id="experienceList"></div>
+        </div>
+
+        <div class="section-block">
+          <div class="section-title-row"><h3><span>04</span> Education</h3><button class="text-btn" id="addEducation">＋ Add education</button></div>
+          <div id="educationList"></div>
+        </div>
+
+        <div class="section-block">
+          <h3><span>05</span> Skills</h3>
+          <label class="full">Add skills, separated by commas<input id="skills" placeholder="JavaScript, React, Communication, Problem solving" /></label>
+        </div>
+
+        <div class="section-block last">
+          <h3><span>06</span> Projects & certifications</h3>
+          <label class="full">Projects or certifications<textarea id="extras" rows="3" placeholder="Project name — what you built and the impact..."></textarea></label>
+        </div>
+        <div class="editor-footer"><span>✦ Your information stays in this browser.</span><button class="btn btn-primary" id="bottomDownload">Download resume ↗</button></div>
+      </section>
+
+      <aside class="preview-wrap">
+        <div class="preview-top"><div><p class="eyebrow">LIVE PREVIEW</p><h2>Looks like a fit.</h2></div><span class="live-dot">LIVE</span></div>
+        <article class="resume" id="resumePreview">
+          <div class="resume-header">
+            <h1 id="pName">Your Name</h1><p id="pRole">Your Professional Title</p>
+            <div class="contact-line" id="pContact">email@example.com&nbsp; • &nbsp;+1 555 000 0000&nbsp; • &nbsp;City, Country</div>
+            <div class="contact-line" id="pLinks"></div>
+          </div>
+          <section class="resume-section" id="summarySection"><h2>PROFILE</h2><p id="pSummary">Your professional summary will appear here. Share a concise overview of your experience, strengths, and career goals.</p></section>
+          <section class="resume-section" id="experienceSection"><h2>EXPERIENCE</h2><div id="pExperience"><p class="placeholder">Your work experience will appear here.</p></div></section>
+          <section class="resume-section" id="educationSection"><h2>EDUCATION</h2><div id="pEducation"><p class="placeholder">Your education will appear here.</p></div></section>
+          <section class="resume-section" id="skillsSection"><h2>CORE SKILLS</h2><div id="pSkills" class="skill-list"><span class="placeholder">Your skills will appear here.</span></div></section>
+          <section class="resume-section" id="extrasSection"><h2>PROJECTS & CERTIFICATIONS</h2><p id="pExtras" class="placeholder">Add projects or certifications to highlight your work.</p></section>
+        </article>
+        <div class="ats-card"><div class="ats-icon">✓</div><div><strong>ATS-friendly layout</strong><p>Clean sections and readable formatting help applicant tracking systems parse your resume.</p></div></div>
+        <p class="disclaimer">Writing suggestions are generated locally as examples. For true AI-generated content, connect your own AI API in a future version.</p>
+      </aside>
+    </div>
+    <footer>Made to help your next opportunity find you. <span>ResumeCraft © 2026</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
